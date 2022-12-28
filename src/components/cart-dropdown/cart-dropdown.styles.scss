@@ -23,11 +23,13 @@
     overflow: auto;
   }
 
-  button {
-    margin-top: auto;
-    font-size: 12px;
-    &:hover {
-        overflow: hidden;
-    }
+  ::-webkit-scrollbar {
+    width: 1px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgb(175, 175, 175);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(0, 0, 0); 
   }
 }
