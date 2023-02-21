@@ -1,30 +1,39 @@
-import { compose, legacy_createStore as createStore, applyMiddleware } from 'redux';
-import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+// import { compose, createStore, applyMiddleware } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
+// import { persistStore, persistReducer } from 'redux-persist';
+// import storage from 'redux-persist/lib/storage';
+// import createSagaMiddleware from 'redux-saga';
 
-// import { loggerMiddleware } from './middleware/logger';
+// import { rootSaga } from './root-saga';
 import logger from 'redux-logger';
 
 import { rootReducer } from './root-reducer';
 
-const persistConfig = {
-  key: 'root',
-  storage,
-  blackList: ['user']
-}
+// const persistConfig = {
+//   key: 'root',
+//   storage,
+//   whitelist: ['cart'],
+// };
 
-const presistedReducer = persistReducer(persistConfig, rootReducer);
+// const sagaMiddleware = createSagaMiddleware();
 
-const middleWares = [process.env.NODE_ENV !== 'production' && logger].filter(Boolean);
+// const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const composeEnhancer = 
-  (process.env.NODE_ENV !== 'production' && 
-    window && 
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || 
-  compose;
+const middleWares = [process.env.NODE_ENV === 'development' && logger].filter(Boolean);
 
-const composedEnhancers = composeEnhancer(applyMiddleware(...middleWares));
+// const composeEnhancer =
+//   (process.env.NODE_ENV !== 'production' &&
+//     window &&
+//     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+//   compose;
 
-export const store = createStore(presistedReducer, undefined, composedEnhancers);
+// const composedEnhancers = composeEnhancer(applyMiddleware(...middleWares));
 
-export const persistor = persistStore(store);
+export const store = configureStore ({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(middleWares),
+});
+
+// sagaMiddleware.run(rootSaga);
+
+// export const persistor = persistStore(store);
