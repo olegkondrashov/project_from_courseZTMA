@@ -46,7 +46,10 @@ const Checkout = () => {
             : <EmptyCheckout/>
         }
         <Total>Total: ${cartTotal}</Total>
-        <PaymentForm/>
+        {
+            cartItems.length ? <PaymentForm/> : null
+        }
+        
     </CheckoutContainer>
   );
 };
