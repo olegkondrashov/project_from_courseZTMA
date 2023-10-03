@@ -21,13 +21,13 @@ import {
 } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCYAYZj9YllM5LrYC0yZt1KsttrxGGFmUg",
-  authDomain: "crwn-ztm-1.firebaseapp.com",
-  projectId: "crwn-ztm-1",
-  storageBucket: "crwn-ztm-1.appspot.com",
-  messagingSenderId: "856744177165",
-  appId: "1:856744177165:web:65d540386eb8fe18862f44",
-};
+    apiKey: "AIzaSyCYAYZj9YllM5LrYC0yZt1KsttrxGGFmUg",
+    authDomain: "crwn-ztm-1.firebaseapp.com",
+    projectId: "crwn-ztm-1",
+    storageBucket: "crwn-ztm-1.appspot.com",
+    messagingSenderId: "856744177165",
+    appId: "1:856744177165:web:65d540386eb8fe18862f44",
+  };
 
 const firebaseApp = initializeApp(firebaseConfig);
 
@@ -96,7 +96,7 @@ export const createUserDocumentFromAuth = async (
     }
   }
 
-  return userSnapshot;
+  return userDocRef;
 };
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
@@ -115,16 +115,3 @@ export const signOutUser = async () => await signOut(auth);
 
 export const onAuthStateChangedListener = (callback) =>
   onAuthStateChanged(auth, callback);
-
-export const getCurrentUser = () => {
-  return new Promise((resolve, reject) => {
-    const unsubscribe = onAuthStateChanged(
-      auth,
-      (userAuth) => {
-        unsubscribe();
-        resolve(userAuth);
-      },
-      reject
-    );
-  });
-};

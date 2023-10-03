@@ -13,6 +13,9 @@ export const LogoContainer = styled(Link)`
   height: 100%;
   width: 70px;
   padding: 25px;
+  @media (max-width: 500px) {
+    padding: 10px;
+  }
 `;
 
 export const NavLinks = styled.div`
@@ -21,9 +24,16 @@ export const NavLinks = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  @media (max-width: 500px) {
+    font-size: 14px;
+    width: 65%;
+  }
 `;
 
 export const NavLink = styled(Link)`
   padding: 10px 15px;
   cursor: pointer;
+  @media (max-width: 500px) {
+    padding: 9px;
+  }
 `;

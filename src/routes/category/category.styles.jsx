@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 export const CategoryContainer = styled.div`
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 50px 20px;
 `
 
